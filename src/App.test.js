@@ -33,4 +33,25 @@ describe("App Components", () => {
     const decrementBtn = findByTestAttr(wrapper, "dec").length;
     expect(decrementBtn).toBe(1);
   });
+
+  test("should test counter start at zero", () => {
+    const initialCounterState = findByTestAttr(wrapper, "counter-display");
+  });
+
+  test("Increment btn shoud increse counter-display", () => {
+    const app = setup();
+    const btn = findByTestAttr(app, "inc");
+    const valBefore = findByTestAttr(app, "counter-display").text();
+    btn.simulate("click");
+    const counterDisplay = findByTestAttr(app, "counter-display");
+    expect(parseInt(counterDisplay.text())).toBe(parseInt(valBefore) + 1);
+  });
+  test("Decrement btn should decrese counter-display", () => {
+    const app = setup();
+    const btn = findByTestAttr(app, "dec");
+    const valBefore = findByTestAttr(app, "counter-display").text();
+    btn.simulate("click");
+    const counterDisplay = findByTestAttr(app, "counter-display");
+    expect(parseInt(counterDisplay.text())).toBe(parseInt(valBefore) - 1);
+  });
 });
