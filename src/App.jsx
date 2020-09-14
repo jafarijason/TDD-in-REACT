@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const [getState, setState] = useState({ n: 0 });
+  const [getState, setState] = useState({ n: 5 });
 
   const increment = () => {
     setState({ n: getState.n + 1 });
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div data-test="app">
-      <h1>{getState.n}</h1>
+      <h1 data-test="counter-display">{getState.n}</h1>
       <br />
       <button data-test="dec" onClick={decrement}>Decrement</button>
       <button data-test="inc" onClick={increment}>Increment</button>
