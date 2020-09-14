@@ -1,19 +1,29 @@
 import React from "react";
-// import { render } from "@testing-library/react";
+
 import App from "./App";
 
-import { configure, shallow, mount, render } from 'enzyme';
-import Adapter  from 'enzyme-adapter-react-16';
- 
-configure({adapter: new Adapter()});
+import { shallow } from "enzyme";
+
 const wrapper = shallow(<App />);
 
-
 describe("App Components", () => {
-  
-  test("renders learn react link", () => {
-    // expect(linkElement).toBeInTheDocument();
-    expect(wrapper).toBeTruthy()
+  test("it should render the app component ", () => {
+    expect(wrapper).toBeTruthy();
+  });
+
+  test("should render app component", () => {
+    const appComponent = wrapper.find("[data-test='app']").length;
+    expect(appComponent).toBe(1);
+  });
+
+  test("should render increment button", () => {
+    const incrementBtn = wrapper.find("[data-test='inc']").length;
+    expect(incrementBtn).toBe(1);
+  });
+
+  test("should render decrement button", () => {
+    const decrementBtn = wrapper.find("[data-test='dec']").length;
+    expect(decrementBtn).toBe(1);
   });
 
 });
