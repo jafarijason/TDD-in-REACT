@@ -4,7 +4,15 @@ import App from "./App";
 
 import { shallow } from "enzyme";
 
-const wrapper = shallow(<App />);
+const setup = (props = {}, state = null) => {
+  return shallow(<App {...props} />);
+};
+
+const wrapper = setup();
+
+const findByTestAttr = (wrapper, val) => {
+  return wrapper.find(`[data-test="${val}"]`);
+};
 
 describe("App Components", () => {
   test("it should render the app component ", () => {
@@ -12,18 +20,17 @@ describe("App Components", () => {
   });
 
   test("should render app component", () => {
-    const appComponent = wrapper.find("[data-test='app']").length;
+    const appComponent = findByTestAttr(wrapper, "app").length;
     expect(appComponent).toBe(1);
   });
 
   test("should render increment button", () => {
-    const incrementBtn = wrapper.find("[data-test='inc']").length;
+    const incrementBtn = findByTestAttr(wrapper, "inc").length;
     expect(incrementBtn).toBe(1);
   });
 
   test("should render decrement button", () => {
-    const decrementBtn = wrapper.find("[data-test='dec']").length;
+    const decrementBtn = findByTestAttr(wrapper, "dec").length;
     expect(decrementBtn).toBe(1);
   });
-
 });
